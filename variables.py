@@ -31,7 +31,7 @@ validation_split = 0.08
 # Sample input
 
 sample_input = {
-        'datetime' : '2013-01-01',
-        'store'    : 1,
-        'item'    : 1
+        'datetime' : '2018-02-05',
+        'store'    : '3',
+        'item'     : '34'
             }

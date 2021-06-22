@@ -115,14 +115,15 @@ def load_Data():
 
 
 def process_sample_input(sample_input):
-        # datetime = sample_input['datetime']
-        # store = sample_input['store']
-        # item = sample_input['datetime']
-
     df = pd.read_csv(test_csv_path)
-    store = df['store'].values
-    item = df['item'].values
 
-    print(len(set(zip(store, item))))
+    datetime = sample_input['datetime']
+    store = int(sample_input['store'])
+    item = int(sample_input['item'])
 
-process_sample_input(sample_input)
+    df_input = df.loc[(df['datetime'] == datetime) & (df['store'] == store) & (df['item'] == item)]
+
+    assert len(df_input) == 1, 'multiple samples from same datetime, same shop & same item'
+    return int(df_input['id'])
+
+print(process_sample_input(sample_input))
