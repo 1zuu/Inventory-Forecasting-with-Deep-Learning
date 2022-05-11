@@ -64,7 +64,7 @@ class InventoryForecasting(object):
                             epochs=num_epoches,
                             validation_split=validation_split
                             )
-        # self.plot_metrics()
+        self.plot_loss()
         self.save_model()
 
     def plot_loss(self):
@@ -75,7 +75,7 @@ class InventoryForecasting(object):
         plt.title('Training and Validation loss')
         plt.xlabel('Epochs')
         plt.ylabel('Loss')
-        plt.savefig(loss_img)
+        plt.savefig(loss_comparison_img)
         plt.legend()
         plt.show()
 
@@ -131,10 +131,11 @@ class InventoryForecasting(object):
         P = np.array(P)
         e = np.abs(P-Y)
 
-        plt.plot(e)
+        plt.plot(e // 5)
         plt.title('Error Analysis')
         plt.xlabel('time')
         plt.ylabel('error')
+        plt.savefig(error_analysis_img)
         plt.show()
 
         plt.plot(Y, 'r', label='Ground Truths')
@@ -142,7 +143,7 @@ class InventoryForecasting(object):
         plt.title('Model Results')
         plt.xlabel('time')
         plt.ylabel('sales')
-        plt.legend()
+        plt.savefig(model_results_img)  
         plt.show()
 
     def run(self):
@@ -154,3 +155,6 @@ class InventoryForecasting(object):
             self.TFconverter()
         self.TFinterpreter()   
         # self.Visualize_Predictions()
+
+model = InventoryForecasting()
+model.run()
